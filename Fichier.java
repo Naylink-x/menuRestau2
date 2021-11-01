@@ -2,14 +2,14 @@ package cours3.menuRestau;
 
 import java.io.*;
 
-public class FichierCommande {
+public class Fichier {
     private BufferedWriter fW;
     private BufferedReader fR;
     private String nomFichier;
     private File fichierMenu;
     private char mode;
 
-    public FichierCommande(String nomFichier) {
+    public Fichier(String nomFichier) {
         this.nomFichier = nomFichier;
 
         try {
@@ -66,8 +66,12 @@ public class FichierCommande {
         }
     }
 
-    public void setFichierMenu(String nomFichier) {
+    public void setNomFichier(String nomFichier) {
         this.nomFichier = nomFichier;
+    }
+
+    public String getNomFichier() {
+        return nomFichier;
     }
 
     public File getFichierMenu() {
