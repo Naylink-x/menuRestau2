@@ -1,5 +1,3 @@
-package cours3.menuRestau;
-
 import java.util.*;
 
 public class Menu {
@@ -14,15 +12,14 @@ public class Menu {
     private char poursuivre;
     private String chaine = "";
     private Fichier F;
-    private byte option;
-    
+    private char option;
 
     public void commande() {
 
         do {
             option = menuPrincipal();
             switch (option) {
-                case 1 :
+                case '1' :
                     do {
                         System.out.println("Quelle entrée souhaitez-vous commander ? ");
                         in.nextLine();
@@ -33,7 +30,7 @@ public class Menu {
                     } while (poursuivre != 'n');
                     break;
                 
-                case 2 :
+                case '2' :
                     do {
                         System.out.println("Quel plat souhaitez-vous commander ? ");
                         in.nextLine();
@@ -44,7 +41,7 @@ public class Menu {
                     } while (poursuivre != 'n');
                     break;
 
-                case 3 :
+                case '3' :
                     do {
 
                         System.out.println("Quel dessert souhaitez-vous commander ? ");
@@ -56,7 +53,7 @@ public class Menu {
                     } while (poursuivre != 'n');
                     break;
                 
-                case 4 :
+                case '4' :
                     F = choixFichier();
                     F.ouvrir("W");
                     miseEnForme(listeEntrees, "Entrées");
@@ -79,10 +76,10 @@ public class Menu {
                 default :
 					System.out.println("Cette option n'existe pas ");
             }
-        } while (option != 4);
+        } while (option != '4');
     }
 
-    public void miseEnForme(ArrayList listeMenu, String titre) {
+    public void miseEnForme(ArrayList<String> listeMenu, String titre) {
         String deco = "##########################################";
 
         if (listeMenu.size() != 0) {
@@ -97,7 +94,7 @@ public class Menu {
         }
     }
 
-    public void ecrireMenu(ArrayList listeMenu) {
+    public void ecrireMenu(ArrayList<String> listeMenu) {
         String commande;
 
         if (listeMenu != null) {
@@ -108,8 +105,8 @@ public class Menu {
         }
     }
 
-    public byte menuPrincipal() {
-		byte tmp;
+    public char menuPrincipal() {
+		char tmp;
 		
 		System.out.println("1. Commander une entrée");
 		System.out.println("2. Commander un plat");
@@ -117,8 +114,8 @@ public class Menu {
 		System.out.println("4. Sortir");
 		System.out.println();
 		System.out.println("Votre choix : ");
-		tmp = in.nextByte();
-		
+        tmp = in.next().charAt(0);
+
 		return tmp;
 	}
 
@@ -137,10 +134,10 @@ public class Menu {
             System.out.println("Souhaitez-vous écraser le fichier ? (o/n)");
             poursuivre = in.next().toLowerCase().charAt(0);
             if (poursuivre == 'n') {
-                do {
-                    System.out.println("Quel nom souhaitez-vous donner au nouveau fichier ? (n'oubliez pas l'extension .txt) ");
+                while (F.getNomFichier() == nomFichier) {
+                    System.out.println("Ce fichier existe déjà. Choisissez un autre nom de fichier. (n'oubliez pas l'extension .txt) ");
                     nomFichier = in.next();
-                } while (F.getNomFichier() == nomFichier);
+                }
                 F.setNomFichier(nomFichier);
             }
         }

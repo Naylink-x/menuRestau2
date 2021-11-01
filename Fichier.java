@@ -1,5 +1,3 @@
-package cours3.menuRestau;
-
 import java.io.*;
 
 public class Fichier {
